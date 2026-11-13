@@ -1,10 +1,11 @@
+
 # Heart Arrhythmia Detection Using ECG Signals
 
 ## Project Overview
 
 This project focuses on detecting and classifying different types of heartbeats using Electrocardiogram (ECG) signals and machine learning techniques. It uses the **MIT-BIH Arrhythmia Database** to develop and evaluate two classification models: a Random Forest baseline model and a one-dimensional Convolutional Neural Network (1D CNN).
 
-The project demonstrates the complete machine learning workflow, including ECG signal preprocessing, exploratory data analysis, model training, performance evaluation, confusion matrix visualization, and individual heartbeat prediction.
+The project demonstrates the complete machine learning workflow, including ECG signal preprocessing, exploratory data analysis, model training, performance evaluation, confusion matrix visualization, and individual heartbeat prediction through a Streamlit application.
 
 This is an educational project intended to explore the application of machine learning and deep learning to biomedical signal classification.
 
@@ -16,7 +17,8 @@ This is an educational project intended to explore the application of machine le
 - Build a 1D CNN to learn patterns from ECG heartbeat signals.
 - Evaluate model performance using accuracy, macro F1-score, and per-class classification metrics.
 - Visualize classification results using confusion matrices.
-- Predict the class of an individual heartbeat using a trained CNN model.
+- Predict the class of an individual heartbeat using trained models.
+- Develop an interactive Streamlit application for heartbeat prediction.
 
 ## Dataset
 
@@ -54,6 +56,7 @@ The dataset is divided by ECG record rather than randomly splitting individual h
 - **Machine Learning:** Scikit-learn
 - **Deep Learning:** PyTorch
 - **Visualization:** Matplotlib
+- **Interactive Application:** Streamlit
 - **Model Storage:** Joblib and PyTorch model checkpoints
 
 ## Project Structure
@@ -72,13 +75,19 @@ ecg-arrhythmia-detection/
 │   ├── random_forest_confusion_matrix.png
 │   └── cnn_confusion_matrix.png
 │
+├── screenshots/
+│   ├── app_interface.png
+│   ├── ecg_waveform.png
+│   ├── random_forest_prediction.png
+│   └── cnn_prediction.png
+│
 ├── 01_explore_data.py
 ├── 02_preprocess.py
 ├── 03_train_baseline.py
 ├── 04_train_cnn.py
 ├── 05_evaluate.py
 ├── 06_predict.py
-│
+├── app.py
 ├── requirements.txt
 └── README.md
 ```
@@ -153,6 +162,45 @@ The script displays:
 - Whether the prediction matches the dataset label
 
 The softmax score represents the model's output for the predicted class. It is not a medically validated confidence score.
+
+### 7. Streamlit Application
+
+The project includes an interactive Streamlit application developed using `app.py`.
+
+The application allows users to:
+
+- Select an individual heartbeat using its dataset index.
+- Choose between Random Forest and 1D CNN models.
+- Visualize the selected ECG heartbeat waveform.
+- View the predicted heartbeat classification.
+
+The processed dataset contains 109,452 heartbeat samples. Therefore, valid heartbeat indices range from `0` to `109451`.
+
+To launch the Streamlit application, run:
+
+```bash
+streamlit run app.py
+```
+
+### Streamlit Application Screenshots
+
+The following screenshots demonstrate the interactive application and example heartbeat predictions.
+
+#### Application Interface
+
+![Streamlit Application Interface](screenshots/app_interface.png)
+
+#### ECG Waveform Visualization
+
+![ECG Waveform](screenshots/ecg_waveform.png)
+
+#### Random Forest Prediction
+
+![Random Forest Prediction](screenshots/random_forest_prediction.png)
+
+#### 1D CNN Prediction
+
+![1D CNN Prediction](screenshots/cnn_prediction.png)
 
 ## Model Evaluation and Results
 
@@ -280,7 +328,19 @@ Enter a heartbeat index when prompted. The valid range is `0` to `109451` for th
 
 The script displays the actual class, predicted class, softmax score, and whether the prediction matches the dataset label.
 
-**Important:** Run the scripts in the order shown when building the project from scratch. The prediction and evaluation scripts require the processed dataset and trained model files to exist.
+### Step 10: Run the Streamlit Application
+
+Make sure the processed dataset and both trained model files are available in their expected locations.
+
+Run:
+
+```bash
+streamlit run app.py
+```
+
+Open the local URL shown in the terminal to interact with the application.
+
+**Important:** Run the scripts in the order shown when building the project from scratch. The prediction, evaluation, and Streamlit application require the processed dataset and trained model files to exist.
 
 ## Limitations
 
@@ -299,7 +359,7 @@ The script displays the actual class, predicted class, softmax score, and whethe
 - Compare additional machine learning and deep learning models.
 - Perform hyperparameter tuning using validation data.
 - Evaluate generalization on independent ECG datasets.
-- Develop a visualization interface for inspecting heartbeat signals and predictions.
+- Enhance the Streamlit interface with additional ECG visualization and prediction analysis.
 - Investigate model interpretability techniques to understand which signal patterns influence predictions.
 
 ## Disclaimer
